@@ -9,6 +9,24 @@ let WeatherApi=()=>{
     let [search,setSearch]=useState("");
     let [loading, setLoading] = useState(false);
     let [hasSearched, setHasSearched] = useState(false);
+
+    let initialLOC = async () => {
+        try {
+            setLoading(true);
+            let locationRes = await fetch("http://ip-api.com/json");
+            let locationData = await locationRes.json();
+            let { lat, lon } = locationData;
+            let weatherRes = await fetch(`${api.base}?lat=${lat}&lon=${lon}&appid=${api.key}&units=metric`);
+            let weatherData = await weatherRes.json();
+            setWeather(weatherData);
+            setHasSearched(true);
+        } catch (err) {
+            console.log("Error fetching data:", err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     let searchWeather= ()=>{
         setLoading(true);
          setTimeout(()=>{
@@ -49,7 +67,9 @@ let WeatherApi=()=>{
             }
         }
     }
-
+    useEffect(() => {
+        initialLOC();
+    }, []);
     useEffect(() => {
         dynamicImage();
     }, [weathers]);
@@ -61,6 +81,7 @@ let WeatherApi=()=>{
         <div className="app">
             <h1>Welcome to weather App</h1>
             <div className="main">
+            <h1 id="cityname">{weathers.name}</h1>
                 <div className="innerDiv">
                     <input type="text" value={search} onChange={(e)=>setSearch(e.target.value)} />
                     <button onClick={searchWeather}>Search Weather</button>
