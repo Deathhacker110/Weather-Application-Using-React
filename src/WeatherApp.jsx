@@ -49,19 +49,21 @@ let WeatherApi=()=>{
             let climate = weathers.weather[0].main;
             switch (climate) {
                 case "Clouds":
-                    document.body.style.backgroundImage = `url('cloudy.webp')`;
+                    document.body.style.backgroundImage = `url('https://64.media.tumblr.com/8cfc539fce38da3e689dbe4b871fccbe/tumblr_nmkoce4gD31sdfx67o1_500.gifv')`;
                     document.body.style.transition=`all 0.5s`;
                     break;
                 case "Haze":
-                    document.body.style.backgroundImage = `url('haze.gif')`;
+                case "Mist":
+                    document.body.style.backgroundImage = `url('https://c.tenor.com/5ImWLS5QAJgAAAAC/tenor.gif')`;
                     document.body.style.transition=`all 0.5s`;
+
                     break;
                 case "Rain":
                     document.body.style.backgroundImage = `url('https://media.tenor.com/wSSZxkwnV3MAAAAC/rain-weather.gif')`;
                     document.body.style.transition=`all 0.5s`;
                     break;
                 case "Sunny":
-                    document.body.style.backgroundImage = `url('sunset.jpg')`;
+                    document.body.style.backgroundImage = `url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjhwcWM2aGZ0MWlxcGk1M2V2NDc4Y2I5dWRnOXN5YjV6dGtydTlhcCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/paMdZlRXlc96o/giphy.webp')`;
                     document.body.style.transition=`all 0.5s`;
                     break;
             }
